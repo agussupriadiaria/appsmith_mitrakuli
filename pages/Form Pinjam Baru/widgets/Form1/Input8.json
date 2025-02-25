@@ -1,0 +1,60 @@
+{
+  "accentColor": "{{appsmith.theme.colors.primaryColor}}",
+  "animateLoading": true,
+  "autoFocus": false,
+  "borderRadius": "{{appsmith.theme.borderRadius.appBorderRadius}}",
+  "bottomRow": 57,
+  "boxShadow": "none",
+  "defaultText": "{{ \n  (() => {\n    const selectedSku = Select1.selectedOptionValue; // Ambil SKU yang dipilih\n    const selectedItem = FormBaruSelect1.data.find(row => row.meta_value === selectedSku); // Cari item di query data\n    const price = Checkbox1.isChecked \n      ? Number(appsmith.store.customPrice) || 0 \n      : Number(selectedItem?.price) || 0; // Ambil price langsung dari query\n\n    return price;\n  })()\n}}\n",
+  "dynamicBindingPathList": [
+    {
+      "key": "accentColor"
+    },
+    {
+      "key": "borderRadius"
+    },
+    {
+      "key": "defaultText"
+    }
+  ],
+  "dynamicHeight": "AUTO_HEIGHT",
+  "dynamicTriggerPathList": [],
+  "iconAlign": "left",
+  "inputType": "TEXT",
+  "isDisabled": true,
+  "isLoading": false,
+  "isRequired": false,
+  "isVisible": true,
+  "key": "967tmzaus7",
+  "label": "Value/Hari\n",
+  "labelAlignment": "left",
+  "labelPosition": "Top",
+  "labelStyle": "",
+  "labelTextSize": "0.875rem",
+  "labelWidth": 5,
+  "leftColumn": 40,
+  "maxDynamicHeight": 9000,
+  "minDynamicHeight": 4,
+  "minWidth": 450,
+  "mobileBottomRow": 34,
+  "mobileLeftColumn": 41,
+  "mobileRightColumn": 61,
+  "mobileTopRow": 27,
+  "needsErrorInfo": false,
+  "originalBottomRow": 57,
+  "originalTopRow": 50,
+  "parentColumnSpace": 9.59375,
+  "parentId": "g3pltsnmhz",
+  "parentRowSpace": 10,
+  "renderMode": "CANVAS",
+  "resetOnSubmit": true,
+  "responsiveBehavior": "fill",
+  "rightColumn": 59,
+  "shouldAllowAutofill": false,
+  "showStepArrows": false,
+  "topRow": 50,
+  "type": "INPUT_WIDGET_V2",
+  "version": 2,
+  "widgetId": "rhlnr9qjw8",
+  "widgetName": "Input8"
+}

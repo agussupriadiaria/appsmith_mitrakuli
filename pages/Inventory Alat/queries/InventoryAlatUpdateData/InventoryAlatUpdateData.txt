@@ -1,0 +1,14 @@
+UPDATE wp_postmeta 
+SET meta_value = {{ Table1.updatedRow.price }} 
+WHERE post_id = {{ Table1.updatedRow.id }}
+AND meta_key = '_regular_price';
+
+UPDATE wp_postmeta 
+SET meta_value = {{ Table1.updatedRow.price }} 
+WHERE post_id = {{ Table1.updatedRow.id }}
+AND meta_key = '_price';
+
+UPDATE wp_postmeta
+SET meta_value = {{ Table1.updatedRow.stock }}
+WHERE post_id = {{ Table1.updatedRow.id }}
+AND meta_key = '_stock';

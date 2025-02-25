@@ -1,0 +1,40 @@
+SELECT
+    wp_posts.ID AS post_id,
+    CONCAT(wp_postmeta.meta_value, ' | ', wp_posts.post_title, ' | ', MAX(wp_terms.name)) AS sku_product,
+    wp_postmeta.meta_value AS meta_value,
+    wp_postmeta_price.meta_value AS price,
+    COALESCE(inv.stock, 0) AS stock -- Tambahkan stok dari InventoryAlatTable1
+FROM wp_posts  
+LEFT JOIN wp_postmeta ON wp_posts.ID = wp_postmeta.post_id AND wp_postmeta.meta_key = '_sku'  
+LEFT JOIN wp_postmeta AS wp_postmeta_price ON wp_posts.ID = wp_postmeta_price.post_id AND wp_postmeta_price.meta_key = '_price'
+INNER JOIN wp_term_relationships ON wp_posts.ID = wp_term_relationships.object_id  
+INNER JOIN wp_term_taxonomy ON wp_term_relationships.term_taxonomy_id = wp_term_taxonomy.term_taxonomy_id 
+    AND wp_term_taxonomy.taxonomy = 'product_brand'  
+INNER JOIN wp_terms ON wp_term_taxonomy.term_id = wp_terms.term_id  
+LEFT JOIN (
+    -- Subquery dari InventoryAlatTable1 untuk mendapatkan stok berdasarkan SKU
+    SELECT 
+        CONVERT(inv.sku USING utf8mb4) COLLATE utf8mb4_general_ci AS sku, 
+        GREATEST(inv.stock - COALESCE(sewa.total_sku, 0), 0) AS stock
+    FROM (
+        SELECT 
+            CONVERT(wp_postmeta_sku.meta_value USING utf8mb4) COLLATE utf8mb4_general_ci AS sku, 
+            CAST(wp_postmeta_stock.meta_value AS SIGNED) AS stock
+        FROM wp_posts
+        LEFT JOIN wp_postmeta AS wp_postmeta_stock 
+            ON wp_posts.ID = wp_postmeta_stock.post_id AND wp_postmeta_stock.meta_key = '_stock'
+        LEFT JOIN wp_postmeta AS wp_postmeta_sku 
+            ON wp_posts.ID = wp_postmeta_sku.post_id AND wp_postmeta_sku.meta_key = '_sku'
+        WHERE wp_posts.post_type IN ('product', 'product_variation')
+    ) AS inv
+    LEFT JOIN (
+        SELECT 
+            CONVERT(rent_sku USING utf8mb4) COLLATE utf8mb4_general_ci AS sku, 
+            COUNT(*) AS total_sku 
+        FROM wp_postrent_log 
+        GROUP BY rent_sku
+    ) AS sewa ON inv.sku = sewa.sku
+) AS inv ON CONVERT(wp_postmeta.meta_value USING utf8mb4) COLLATE utf8mb4_general_ci = inv.sku
+WHERE wp_posts.post_type IN ('product', 'product_variation')
+      AND wp_postmeta.meta_value != ''
+GROUP BY wp_posts.ID, wp_postmeta.meta_value, wp_posts.post_title, wp_postmeta_price.meta_value, inv.stock;

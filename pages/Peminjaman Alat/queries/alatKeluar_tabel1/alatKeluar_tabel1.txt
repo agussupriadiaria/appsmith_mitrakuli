@@ -1,0 +1,25 @@
+SELECT 
+    ROW_NUMBER() OVER (ORDER BY wp_posts.id) AS no,
+    wp_posts.id AS id_alat,
+    wp_postrent_log.rent_id AS id_sewa,
+		wp_postrent_log.rent_sku AS sku,
+    wp_posts.post_title AS nama_alat,
+    wp_postrent_log.rent_name AS nama_penyewa,
+		wp_postrent_log.rent_merk AS merk,
+		wp_postrent_log.rent_phone AS no_hp,
+    wp_postrent_log.rent_start AS tanggal_sewa,
+    wp_postrent_log.rent_end AS tanggal_kembali,
+		wp_postrent_log.rent_day_amount AS jumlah_hari,
+		wp_postrent_log.rent_price_perday AS biaya_perhari,
+		wp_postrent_log.rent_price_total AS biaya_total,
+    wp_postrent_log.rent_status AS status,
+		wp_postrent_log.rent_notes AS notes_transaksi,
+		wp_postrent_log.rent_created_at AS dibuat
+FROM wp_posts
+JOIN wp_postrent_log ON wp_posts.id = wp_postrent_log.post_id
+WHERE 
+    wp_posts.post_type IN ('product', 'product_variation') 
+    AND EXISTS (
+        SELECT 1 FROM wp_postmeta 
+        WHERE wp_postmeta.post_id = wp_posts.id AND wp_postmeta.meta_value != ''
+    );

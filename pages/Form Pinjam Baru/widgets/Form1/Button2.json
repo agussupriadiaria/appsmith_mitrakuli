@@ -1,0 +1,52 @@
+{
+  "animateLoading": true,
+  "borderRadius": "{{appsmith.theme.borderRadius.appBorderRadius}}",
+  "bottomRow": 83,
+  "boxShadow": "none",
+  "buttonColor": "{{appsmith.theme.colors.primaryColor}}",
+  "buttonVariant": "PRIMARY",
+  "disabledWhenInvalid": false,
+  "dynamicBindingPathList": [
+    {
+      "key": "buttonColor"
+    },
+    {
+      "key": "borderRadius"
+    }
+  ],
+  "dynamicTriggerPathList": [
+    {
+      "key": "onClick"
+    }
+  ],
+  "isDefaultClickDisabled": true,
+  "isDisabled": false,
+  "isLoading": false,
+  "isVisible": true,
+  "key": "t0cgb8f1sw",
+  "leftColumn": 21,
+  "minWidth": 120,
+  "mobileBottomRow": 17,
+  "mobileLeftColumn": 30,
+  "mobileRightColumn": 46,
+  "mobileTopRow": 13,
+  "needsErrorInfo": false,
+  "onClick": "{{navigateTo('https://app.appsmith.com/app/mitrakuli-master/peminjaman-alat-67a75f4e188dfb681e0222e6', {}, 'SAME_WINDOW');}}",
+  "originalBottomRow": 83,
+  "originalTopRow": 79,
+  "parentColumnSpace": 17.9375,
+  "parentId": "g3pltsnmhz",
+  "parentRowSpace": 10,
+  "placement": "CENTER",
+  "recaptchaType": "V3",
+  "renderMode": "CANVAS",
+  "resetFormOnClick": false,
+  "responsiveBehavior": "hug",
+  "rightColumn": 40,
+  "text": "Ke Peminjaman Alat",
+  "topRow": 79,
+  "type": "BUTTON_WIDGET",
+  "version": 1,
+  "widgetId": "5ci1eyfow6",
+  "widgetName": "Button2"
+}

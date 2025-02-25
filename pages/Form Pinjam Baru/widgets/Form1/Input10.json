@@ -1,0 +1,59 @@
+{
+  "accentColor": "{{appsmith.theme.colors.primaryColor}}",
+  "animateLoading": true,
+  "autoFocus": false,
+  "borderRadius": "{{appsmith.theme.borderRadius.appBorderRadius}}",
+  "bottomRow": 75,
+  "boxShadow": "none",
+  "defaultText": "{{ \n  (() => {\n    const selectedSku = Select1.selectedOptionValue; // SKU yang dipilih\n    const selectedItem = FormBaruSelect1.data.find(row => row.meta_value === selectedSku); // Cari item berdasarkan SKU\n    const price = Checkbox1.isChecked \n      ? Number(appsmith.store.customPrice) || 0 \n      : Number(selectedItem?.price) || 0; // Ambil price dari query, bukan dari split()\n\n    return new Intl.NumberFormat('id-ID', { \n      style: 'currency', \n      currency: 'IDR', \n      minimumFractionDigits: 0 \n    }).format(price);\n  })()\n}}\n",
+  "dynamicBindingPathList": [
+    {
+      "key": "accentColor"
+    },
+    {
+      "key": "borderRadius"
+    },
+    {
+      "key": "defaultText"
+    }
+  ],
+  "dynamicHeight": "FIXED",
+  "dynamicTriggerPathList": [],
+  "iconAlign": "left",
+  "inputType": "TEXT",
+  "isDisabled": true,
+  "isLoading": false,
+  "isRequired": false,
+  "isVisible": true,
+  "key": "967tmzaus7",
+  "label": "Biaya/Hari",
+  "labelAlignment": "left",
+  "labelPosition": "Top",
+  "labelStyle": "",
+  "labelTextSize": "0.875rem",
+  "labelWidth": 5,
+  "leftColumn": 21,
+  "maxDynamicHeight": 9000,
+  "minDynamicHeight": 4,
+  "minWidth": 450,
+  "mobileBottomRow": 34,
+  "mobileLeftColumn": 41,
+  "mobileRightColumn": 61,
+  "mobileTopRow": 27,
+  "needsErrorInfo": false,
+  "originalBottomRow": 75,
+  "originalTopRow": 68,
+  "parentColumnSpace": 9.59375,
+  "parentId": "g3pltsnmhz",
+  "parentRowSpace": 10,
+  "renderMode": "CANVAS",
+  "resetOnSubmit": true,
+  "responsiveBehavior": "fill",
+  "rightColumn": 40,
+  "showStepArrows": false,
+  "topRow": 68,
+  "type": "INPUT_WIDGET_V2",
+  "version": 2,
+  "widgetId": "hlqlg65ge9",
+  "widgetName": "Input10"
+}

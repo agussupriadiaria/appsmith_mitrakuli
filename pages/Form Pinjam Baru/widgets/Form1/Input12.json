@@ -1,0 +1,59 @@
+{
+  "accentColor": "{{appsmith.theme.colors.primaryColor}}",
+  "animateLoading": true,
+  "autoFocus": false,
+  "borderRadius": "{{appsmith.theme.borderRadius.appBorderRadius}}",
+  "bottomRow": 75,
+  "boxShadow": "none",
+  "defaultText": "{{ \n  (() => {\n    const startDate = DatePicker1.selectedDate ? new Date(DatePicker1.selectedDate) : null;\n    const endDate = DatePicker2.selectedDate ? new Date(DatePicker2.selectedDate) : null;\n\n    if (!startDate || !endDate) {\n      return 0; // Jika salah satu tanggal kosong, tampilkan 0\n    }\n\n    // Hitung jumlah hari dengan pembulatan ke atas (ceil)\n    const diffTime = endDate - startDate;\n    const totalDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24)+1);\n\n    return totalDays > 0 ? totalDays : 0; // Pastikan tidak negatif\n  })() \n}}\n",
+  "dynamicBindingPathList": [
+    {
+      "key": "accentColor"
+    },
+    {
+      "key": "borderRadius"
+    },
+    {
+      "key": "defaultText"
+    }
+  ],
+  "dynamicHeight": "FIXED",
+  "dynamicTriggerPathList": [],
+  "iconAlign": "left",
+  "inputType": "TEXT",
+  "isDisabled": true,
+  "isLoading": false,
+  "isRequired": false,
+  "isVisible": true,
+  "key": "967tmzaus7",
+  "label": "Jumlah Hari",
+  "labelAlignment": "left",
+  "labelPosition": "Top",
+  "labelStyle": "",
+  "labelTextSize": "0.875rem",
+  "labelWidth": 5,
+  "leftColumn": 1,
+  "maxDynamicHeight": 9000,
+  "minDynamicHeight": 4,
+  "minWidth": 450,
+  "mobileBottomRow": 34,
+  "mobileLeftColumn": 41,
+  "mobileRightColumn": 61,
+  "mobileTopRow": 27,
+  "needsErrorInfo": false,
+  "originalBottomRow": 75,
+  "originalTopRow": 68,
+  "parentColumnSpace": 9.59375,
+  "parentId": "g3pltsnmhz",
+  "parentRowSpace": 10,
+  "renderMode": "CANVAS",
+  "resetOnSubmit": true,
+  "responsiveBehavior": "fill",
+  "rightColumn": 21,
+  "showStepArrows": false,
+  "topRow": 68,
+  "type": "INPUT_WIDGET_V2",
+  "version": 2,
+  "widgetId": "2d3fkpxjod",
+  "widgetName": "Input12"
+}

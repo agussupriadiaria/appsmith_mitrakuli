@@ -1,0 +1,8 @@
+UPDATE wp_postrent_log 
+SET rent_phone = '{{Table1.updatedRow.no_hp}}',
+    rent_start = '{{Table1.updatedRow.tanggal_sewa}}',
+    rent_end = '{{Table1.updatedRow.tanggal_kembali}}',
+    rent_status = '{{Table1.updatedRow.status}}',
+    rent_notes = '{{Table1.updatedRow.notes_transaksi}}'
+WHERE post_id = {{Table1.updatedRow.id_alat}} 
+AND rent_id = {{Table1.updatedRow.id_sewa}};

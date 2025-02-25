@@ -1,0 +1,59 @@
+{
+  "accentColor": "{{appsmith.theme.colors.primaryColor}}",
+  "animateLoading": true,
+  "autoFocus": false,
+  "borderRadius": "{{appsmith.theme.borderRadius.appBorderRadius}}",
+  "bottomRow": 75,
+  "boxShadow": "none",
+  "defaultText": "{{ \n  (() => {\n    const startDate = DatePicker1.selectedDate ? new Date(DatePicker1.selectedDate) : null;\n    const endDate = DatePicker2.selectedDate ? new Date(DatePicker2.selectedDate) : null;\n\n    // Ambil SKU yang dipilih dari Select1\n    const selectedSku = Select1.selectedOptionValue; \n    const selectedItem = FormBaruSelect1.data.find(row => row.meta_value === selectedSku); // Cari item berdasarkan SKU\n\n    // Ambil harga dari query atau custom price\n    const pricePerDay = Checkbox1.isChecked \n      ? Number(appsmith.store.customPrice) || 0 \n      : Number(selectedItem?.price) || 0; // Ambil price dari query, bukan dari split()\n\n    if (!startDate || !endDate) {\n      return `Rp ${pricePerDay.toLocaleString('id-ID', { maximumFractionDigits: 0 })}`;\n    }\n\n    // Hitung jumlah hari\n    const diffTime = endDate - startDate;\n    const totalDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24) + 1); \n\n    // Pastikan totalDays minimal 1\n    const finalDays = Math.max(totalDays, 1);\n    const totalPrice = pricePerDay * finalDays;\n\n    return `Rp ${totalPrice.toLocaleString('id-ID', { maximumFractionDigits: 0 })}`;\n  })() \n}}\n",
+  "dynamicBindingPathList": [
+    {
+      "key": "accentColor"
+    },
+    {
+      "key": "borderRadius"
+    },
+    {
+      "key": "defaultText"
+    }
+  ],
+  "dynamicHeight": "FIXED",
+  "dynamicTriggerPathList": [],
+  "iconAlign": "left",
+  "inputType": "TEXT",
+  "isDisabled": true,
+  "isLoading": false,
+  "isRequired": false,
+  "isVisible": true,
+  "key": "967tmzaus7",
+  "label": "Biaya Total",
+  "labelAlignment": "left",
+  "labelPosition": "Top",
+  "labelStyle": "",
+  "labelTextSize": "0.875rem",
+  "labelWidth": 5,
+  "leftColumn": 40,
+  "maxDynamicHeight": 9000,
+  "minDynamicHeight": 4,
+  "minWidth": 450,
+  "mobileBottomRow": 34,
+  "mobileLeftColumn": 41,
+  "mobileRightColumn": 61,
+  "mobileTopRow": 27,
+  "needsErrorInfo": false,
+  "originalBottomRow": 75,
+  "originalTopRow": 68,
+  "parentColumnSpace": 9.59375,
+  "parentId": "g3pltsnmhz",
+  "parentRowSpace": 10,
+  "renderMode": "CANVAS",
+  "resetOnSubmit": true,
+  "responsiveBehavior": "fill",
+  "rightColumn": 59,
+  "showStepArrows": false,
+  "topRow": 68,
+  "type": "INPUT_WIDGET_V2",
+  "version": 2,
+  "widgetId": "04m1aommvw",
+  "widgetName": "Input11"
+}
