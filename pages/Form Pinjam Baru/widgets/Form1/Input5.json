@@ -5,7 +5,7 @@
   "borderRadius": "{{appsmith.theme.borderRadius.appBorderRadius}}",
   "bottomRow": 57,
   "boxShadow": "none",
-  "defaultText": "{{ Select1.selectedOptionLabel.split(\" | \")[1] || '' }}\n",
+  "defaultText": "{{ Select1.selectedOptionLabel.split(\" | \")[2] || '' }}",
   "dynamicBindingPathList": [
     {
       "key": "accentColor"

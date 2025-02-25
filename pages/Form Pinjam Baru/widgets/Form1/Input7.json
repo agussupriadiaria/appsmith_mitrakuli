@@ -5,7 +5,7 @@
   "borderRadius": "{{appsmith.theme.borderRadius.appBorderRadius}}",
   "bottomRow": 57,
   "boxShadow": "none",
-  "defaultText": "{{FormBaruSelect1.data[0].post_id\n}}",
+  "defaultText": "{{ Select1.selectedOptionLabel.split(\" | \")[0] || '' }}",
   "dynamicBindingPathList": [
     {
       "key": "accentColor"
