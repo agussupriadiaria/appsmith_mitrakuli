@@ -5,7 +5,7 @@
   "borderRadius": "{{appsmith.theme.borderRadius.appBorderRadius}}",
   "bottomRow": 57,
   "boxShadow": "none",
-  "defaultText": "{{.data.find(item => item.sku_product === Select1.selectedOptionValue)?.post_id\n}}",
+  "defaultText": "{{FormBaruSelect1.data[0].post_id\n}}",
   "dynamicBindingPathList": [
     {
       "key": "accentColor"
