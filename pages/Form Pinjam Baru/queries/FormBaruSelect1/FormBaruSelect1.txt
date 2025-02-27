@@ -1,6 +1,6 @@
 SELECT
-    CONCAT(wp_posts.ID, ' | ', wp_postmeta.meta_value, ' | ', wp_posts.post_title, ' | ', MAX(wp_terms.name)) AS sku_product,
-		wp_posts.ID AS post_id,
+    CONCAT(wp_posts.ID, ' | ', wp_postmeta.meta_value, ' | ', wp_posts.post_title, ' | ', MAX(wp_terms.name), ' | ', COALESCE(inv.stock, 0)) AS sku_product,
+    wp_posts.ID AS post_id,
     wp_postmeta.meta_value AS meta_value,
     wp_postmeta_price.meta_value AS price,
     COALESCE(inv.stock, 0) AS stock -- Tambahkan stok dari InventoryAlatTable1
