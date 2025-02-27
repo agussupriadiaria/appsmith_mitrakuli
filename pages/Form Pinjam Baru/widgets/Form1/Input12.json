@@ -5,7 +5,7 @@
   "borderRadius": "{{appsmith.theme.borderRadius.appBorderRadius}}",
   "bottomRow": 64,
   "boxShadow": "none",
-  "defaultText": "{{ \n  (() => {\n    const startDate = DatePicker1.selectedDate ? new Date(DatePicker1.selectedDate) : null;\n    const endDate = DatePicker2.selectedDate ? new Date(DatePicker2.selectedDate) : null;\n\n    if (!startDate || !endDate) {\n      return 0; // Jika salah satu tanggal kosong, tampilkan 0\n    }\n\n    // Hitung jumlah hari dengan pembulatan ke atas (ceil)\n    const diffTime = endDate - startDate;\n    const totalDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24));\n\n    return totalDays > 0 ? totalDays : 0; // Pastikan tidak negatif\n  })() \n}}\n",
+  "defaultText": "{{ \n  (() => {\n    const startDate = DatePicker1.selectedDate ? new Date(DatePicker1.selectedDate) : null;\n    const endDate = DatePicker2.selectedDate ? new Date(DatePicker2.selectedDate) : null;\n\n    if (!startDate || !endDate) {\n      return 0; // Jika salah satu tanggal kosong, tampilkan 0\n    }\n\n    // Hitung jumlah hari dengan pembulatan ke atas (ceil)\n    const diffTime = endDate - startDate;\n    const totalDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24)+1);\n\n    return totalDays > 0 ? totalDays : 0; // Pastikan tidak negatif\n  })() \n}}\n",
   "dynamicBindingPathList": [
     {
       "key": "accentColor"
