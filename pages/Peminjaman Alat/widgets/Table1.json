@@ -4,7 +4,7 @@
   "borderColor": "#E0DEDE",
   "borderRadius": "{{appsmith.theme.borderRadius.appBorderRadius}}",
   "borderWidth": "1",
-  "bottomRow": 71,
+  "bottomRow": 72,
   "boxShadow": "{{appsmith.theme.boxShadow.appBoxShadow}}",
   "canFreezeColumn": true,
   "childStylesheet": {
@@ -42,14 +42,15 @@
     "tanggal_sewa",
     "tanggal_kembali",
     "jumlah_hari",
-    "status",
     "dibuat",
     "biaya_perhari",
     "biaya_total",
     "notes_transaksi",
+    "status_peminjaman",
+    "status_pengiriman",
     "EditActions1"
   ],
-  "columnUpdatedAt": 1740408316728,
+  "columnUpdatedAt": 1740647606593,
   "columnWidthMap": {
     "biaya_perhari": 152,
     "biaya_total": 133.99999999999997,
@@ -126,9 +127,6 @@
       "key": "primaryColumns.id_sewa.computedValue"
     },
     {
-      "key": "primaryColumns.status.computedValue"
-    },
-    {
       "key": "primaryColumns.dibuat.computedValue"
     },
     {
@@ -157,6 +155,12 @@
     },
     {
       "key": "primaryColumns.notes_transaksi.computedValue"
+    },
+    {
+      "key": "primaryColumns.status_peminjaman.computedValue"
+    },
+    {
+      "key": "primaryColumns.status_pengiriman.computedValue"
     }
   ],
   "dynamicPropertyPathList": [
@@ -168,12 +172,6 @@
     },
     {
       "key": "primaryColumns.EditActions1.isDiscardDisabled"
-    },
-    {
-      "key": "primaryColumns.status.validation.isColumnEditableCellRequired"
-    },
-    {
-      "key": "primaryColumns.status.cellBackground"
     }
   ],
   "dynamicTriggerPathList": [
@@ -694,65 +692,71 @@
       "verticalAlignment": "CENTER",
       "width": 150
     },
-    "status": {
-      "alias": "status",
+    "status_peminjaman": {
+      "alias": "status_peminjaman",
       "allowCellWrapping": false,
       "allowSameOptionsInNewRow": true,
-      "cellBackground": "{{}}",
-      "columnType": "select",
-      "computedValue": "{{Table1.processedTableData.map((currentRow, currentIndex) => ( currentRow.status))}}",
+      "cellBackground": "",
+      "columnType": "text",
+      "computedValue": "{{Table1.processedTableData.map((currentRow, currentIndex) => ( currentRow[\"status_peminjaman\"]))}}",
       "currencyCode": "USD",
-      "customAlias": "",
       "decimals": 0,
       "enableFilter": true,
       "enableSort": true,
       "fontStyle": "",
       "horizontalAlignment": "LEFT",
-      "id": "status",
-      "index": 7,
-      "isCellEditable": true,
+      "id": "status_peminjaman",
+      "index": 15,
+      "isCellEditable": false,
       "isCellVisible": true,
       "isDerived": false,
       "isDisabled": false,
       "isDiscardVisible": true,
-      "isEditable": true,
-      "isFilterable": false,
+      "isEditable": false,
       "isSaveVisible": true,
       "isVisible": true,
-      "label": "status",
-      "menuItems": {
-        "menuItemnrgoq38d3k": {
-          "id": "menuItemnrgoq38d3k",
-          "index": 1,
-          "isDisabled": false,
-          "isVisible": true,
-          "label": "Incomplete",
-          "widgetId": "2q8njn2h8w"
-        },
-        "menuItemxf8cuc80yn": {
-          "id": "menuItemxf8cuc80yn",
-          "index": 0,
-          "isDisabled": false,
-          "isVisible": true,
-          "label": "Complete",
-          "widgetId": "lzklxd51vf"
-        }
-      },
-      "menuItemsSource": "STATIC",
+      "label": "status_peminjaman",
       "notation": "standard",
-      "originalId": "status",
-      "placeholderText": "",
-      "resetFilterTextOnClose": false,
-      "selectOptions": "[\n  { \"label\": \"Complete\", \"value\": \"complete\" },\n  { \"label\": \"Incomplete\", \"value\": \"incomplete\" }\n]",
-      "serverSideFiltering": false,
-      "sortBy": "label",
+      "originalId": "status_peminjaman",
       "sticky": "",
       "textColor": "",
       "textSize": "0.875rem",
       "thousandSeparator": true,
-      "validation": {
-        "isColumnEditableCellRequired": ""
-      },
+      "validation": {},
+      "verticalAlignment": "CENTER",
+      "width": 150
+    },
+    "status_pengiriman": {
+      "alias": "status_pengiriman",
+      "allowCellWrapping": false,
+      "allowSameOptionsInNewRow": true,
+      "cellBackground": "",
+      "columnType": "text",
+      "computedValue": "{{Table1.processedTableData.map((currentRow, currentIndex) => ( currentRow[\"status_pengiriman\"]))}}",
+      "currencyCode": "USD",
+      "decimals": 0,
+      "enableFilter": true,
+      "enableSort": true,
+      "fontStyle": "",
+      "horizontalAlignment": "LEFT",
+      "id": "status_pengiriman",
+      "index": 16,
+      "isCellEditable": false,
+      "isCellVisible": true,
+      "isDerived": false,
+      "isDisabled": false,
+      "isDiscardVisible": true,
+      "isEditable": false,
+      "isSaveVisible": true,
+      "isVisible": true,
+      "label": "status_pengiriman",
+      "notation": "standard",
+      "originalId": "status_pengiriman",
+      "sticky": "",
+      "textColor": "",
+      "textSize": "0.875rem",
+      "thousandSeparator": true,
+      "validation": {},
       "verticalAlignment": "CENTER",
       "width": 150
     },
@@ -837,7 +841,7 @@
   "showInlineEditingOptionDropdown": true,
   "tableData": "{{alatKeluar_tabel1.data}}",
   "textSize": "0.875rem",
-  "topRow": 17,
+  "topRow": 18,
   "totalRecordsCount": 0,
   "type": "TABLE_WIDGET_V2",
   "variant": "DEFAULT",

@@ -12,7 +12,8 @@ SELECT
 		wp_postrent_log.rent_day_amount AS jumlah_hari,
 		wp_postrent_log.rent_price_perday AS biaya_perhari,
 		wp_postrent_log.rent_price_total AS biaya_total,
-    wp_postrent_log.rent_status AS status,
+    wp_postrent_log.rent_status AS status_peminjaman,
+		wp_postrent_log.rent_delivery_status AS status_pengiriman,
 		wp_postrent_log.rent_notes AS notes_transaksi,
 		wp_postrent_log.rent_created_at AS dibuat
 FROM wp_posts
