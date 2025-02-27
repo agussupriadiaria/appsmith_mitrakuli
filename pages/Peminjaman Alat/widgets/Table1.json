@@ -751,7 +751,7 @@
       "menuItemsSource": "STATIC",
       "notation": "standard",
       "originalId": "status_peminjaman",
-      "selectOptions": "[\n  { \"label\": \"Complete\", \"value\": \"Complete\" },\n  { \"label\": \"Incompelte\", \"value\": \"Incompelte\" }\n]\n",
+      "selectOptions": "[\n  { \"label\": \"Complete\", \"value\": \"Complete\" },\n  { \"label\": \"Incomplete\", \"value\": \"Incomplete\" }\n]\n",
       "sourceData": [],
       "sticky": "",
       "textColor": "",
