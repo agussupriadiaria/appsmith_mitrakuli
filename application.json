@@ -43,10 +43,6 @@
     {
       "id": "Peminjaman Alat",
       "isDefault": false
-    },
-    {
-      "id": "Status Pengiriman Alat",
-      "isDefault": false
     }
   ],
   "unpublishedAppLayout": {

@@ -29,6 +29,8 @@
   "mobileTopRow": 12,
   "needsErrorInfo": false,
   "onClick": "{{navigateTo('https://app.appsmith.com/app/mitrakuli-master/form-pinjam-baru-67af1ca55137ce2bd2adea9e', {}, 'SAME_WINDOW');}}",
+  "originalBottomRow": 16,
+  "originalTopRow": 12,
   "parentColumnSpace": 17.9375,
   "parentId": "0",
   "parentRowSpace": 10,

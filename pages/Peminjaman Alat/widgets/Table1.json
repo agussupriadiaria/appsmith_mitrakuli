@@ -42,14 +42,15 @@
     "tanggal_sewa",
     "tanggal_kembali",
     "jumlah_hari",
-    "status",
     "dibuat",
     "biaya_perhari",
+    "status_peminjaman",
     "biaya_total",
     "notes_transaksi",
+    "status_pengiriman",
     "EditActions1"
   ],
-  "columnUpdatedAt": 1740408316728,
+  "columnUpdatedAt": 1740644792640,
   "columnWidthMap": {
     "biaya_perhari": 152,
     "biaya_total": 133.99999999999997,
@@ -58,17 +59,19 @@
     "id_alat": 89,
     "id_sewa": 98,
     "item": 470,
-    "jumlah_hari": 118,
+    "jumlah_hari": 137,
     "merk": 160,
     "nama_alat": 144,
     "nama_penyewa": 150,
     "no": 60,
     "notes": 190,
     "notes_tramsaksi": 307,
-    "notes_transaksi": 179,
+    "notes_transaksi": 194,
     "price": 102,
     "sku": 188,
     "status": 107,
+    "status_peminjaman": 183,
+    "status_pengiriman": 178,
     "stock": 93,
     "tanggal_kembali": 176,
     "tanggal_sewa": 155
@@ -126,9 +129,6 @@
       "key": "primaryColumns.id_sewa.computedValue"
     },
     {
-      "key": "primaryColumns.status.computedValue"
-    },
-    {
       "key": "primaryColumns.dibuat.computedValue"
     },
     {
@@ -157,6 +157,12 @@
     },
     {
       "key": "primaryColumns.notes_transaksi.computedValue"
+    },
+    {
+      "key": "primaryColumns.status_peminjaman.computedValue"
+    },
+    {
+      "key": "primaryColumns.status_pengiriman.computedValue"
     }
   ],
   "dynamicPropertyPathList": [
@@ -168,12 +174,6 @@
     },
     {
       "key": "primaryColumns.EditActions1.isDiscardDisabled"
-    },
-    {
-      "key": "primaryColumns.status.validation.isColumnEditableCellRequired"
-    },
-    {
-      "key": "primaryColumns.status.cellBackground"
     }
   ],
   "dynamicTriggerPathList": [
@@ -204,8 +204,8 @@
   "mobileRightColumn": 36,
   "mobileTopRow": 8,
   "needsErrorInfo": false,
-  "originalBottomRow": 71,
-  "originalTopRow": 17,
+  "originalBottomRow": 72,
+  "originalTopRow": 18,
   "parentColumnSpace": 19.8125,
   "parentId": "0",
   "parentRowSpace": 10,
@@ -694,65 +694,71 @@
       "verticalAlignment": "CENTER",
       "width": 150
     },
-    "status": {
-      "alias": "status",
+    "status_peminjaman": {
+      "alias": "status_peminjaman",
       "allowCellWrapping": false,
       "allowSameOptionsInNewRow": true,
-      "cellBackground": "{{}}",
-      "columnType": "select",
-      "computedValue": "{{Table1.processedTableData.map((currentRow, currentIndex) => ( currentRow.status))}}",
+      "cellBackground": "",
+      "columnType": "text",
+      "computedValue": "{{Table1.processedTableData.map((currentRow, currentIndex) => ( currentRow[\"status_peminjaman\"]))}}",
       "currencyCode": "USD",
-      "customAlias": "",
       "decimals": 0,
       "enableFilter": true,
       "enableSort": true,
       "fontStyle": "",
       "horizontalAlignment": "LEFT",
-      "id": "status",
-      "index": 7,
-      "isCellEditable": true,
+      "id": "status_peminjaman",
+      "index": 15,
+      "isCellEditable": false,
       "isCellVisible": true,
       "isDerived": false,
       "isDisabled": false,
       "isDiscardVisible": true,
-      "isEditable": true,
-      "isFilterable": false,
+      "isEditable": false,
       "isSaveVisible": true,
       "isVisible": true,
-      "label": "status",
-      "menuItems": {
-        "menuItemnrgoq38d3k": {
-          "id": "menuItemnrgoq38d3k",
-          "index": 1,
-          "isDisabled": false,
-          "isVisible": true,
-          "label": "Incomplete",
-          "widgetId": "2q8njn2h8w"
-        },
-        "menuItemxf8cuc80yn": {
-          "id": "menuItemxf8cuc80yn",
-          "index": 0,
-          "isDisabled": false,
-          "isVisible": true,
-          "label": "Complete",
-          "widgetId": "lzklxd51vf"
-        }
-      },
-      "menuItemsSource": "STATIC",
+      "label": "status_peminjaman",
       "notation": "standard",
-      "originalId": "status",
-      "placeholderText": "",
-      "resetFilterTextOnClose": false,
-      "selectOptions": "[\n  { \"label\": \"Complete\", \"value\": \"complete\" },\n  { \"label\": \"Incomplete\", \"value\": \"incomplete\" }\n]",
-      "serverSideFiltering": false,
-      "sortBy": "label",
+      "originalId": "status_peminjaman",
       "sticky": "",
       "textColor": "",
       "textSize": "0.875rem",
       "thousandSeparator": true,
-      "validation": {
-        "isColumnEditableCellRequired": ""
-      },
+      "validation": {},
+      "verticalAlignment": "CENTER",
+      "width": 150
+    },
+    "status_pengiriman": {
+      "alias": "status_pengiriman",
+      "allowCellWrapping": false,
+      "allowSameOptionsInNewRow": true,
+      "cellBackground": "",
+      "columnType": "text",
+      "computedValue": "{{Table1.processedTableData.map((currentRow, currentIndex) => ( currentRow[\"status_pengiriman\"]))}}",
+      "currencyCode": "USD",
+      "decimals": 0,
+      "enableFilter": true,
+      "enableSort": true,
+      "fontStyle": "",
+      "horizontalAlignment": "LEFT",
+      "id": "status_pengiriman",
+      "index": 16,
+      "isCellEditable": false,
+      "isCellVisible": true,
+      "isDerived": false,
+      "isDisabled": false,
+      "isDiscardVisible": true,
+      "isEditable": false,
+      "isSaveVisible": true,
+      "isVisible": true,
+      "label": "status_pengiriman",
+      "notation": "standard",
+      "originalId": "status_pengiriman",
+      "sticky": "",
+      "textColor": "",
+      "textSize": "0.875rem",
+      "thousandSeparator": true,
+      "validation": {},
       "verticalAlignment": "CENTER",
       "width": 150
     },

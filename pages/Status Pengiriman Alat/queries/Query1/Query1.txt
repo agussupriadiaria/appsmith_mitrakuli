@@ -1,1 +1,0 @@
-SELECT * FROM wp_actionscheduler_actions LIMIT 10;
