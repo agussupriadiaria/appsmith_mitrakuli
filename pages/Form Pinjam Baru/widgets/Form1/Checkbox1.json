@@ -40,7 +40,7 @@
   "mobileRightColumn": 13,
   "mobileTopRow": 27,
   "needsErrorInfo": false,
-  "onCheckChange": "{{ Checkbox1.isChecked ? \"\" : CurrencyInput1.setValue(\"\") }}\n",
+  "onCheckChange": "{{ \n  Checkbox1.isChecked \n}}\n",
   "originalBottomRow": 31,
   "originalTopRow": 27,
   "parentColumnSpace": 12.3798828125,
