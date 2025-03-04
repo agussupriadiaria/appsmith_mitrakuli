@@ -5,7 +5,7 @@
   "borderRadius": "{{appsmith.theme.borderRadius.appBorderRadius}}",
   "bottomRow": 49,
   "boxShadow": "none",
-  "defaultText": "{{ \n  (() => {\n    const selectedSku = Select1.selectedOptionValue; // Ambil SKU yang dipilih\n    const selectedItem = FormBaruSelect1.data.find(row => row.meta_value === selectedSku); // Cari item di query data\n    const price = Checkbox1.isChecked \n      ? Number(appsmith.store.customPrice) || 0 \n      : Number(selectedItem?.price) || 0; // Ambil price langsung dari query\n\n    return price;\n  })()\n}}\n",
+  "defaultText": "{{ \n  (() => {\n    // Ambil SKU yang dipilih dari Select1\n    const selectedSku = Select1.selectedOptionValue; \n    // Cari item dalam data FormBaruSelect1 yang memiliki meta_value sesuai dengan SKU yang dipilih\n    const selectedItem = FormBaruSelect1.data.find(row => row.meta_value === selectedSku);\n\n    // Ambil harga dari data SKU\n    const price = Number(selectedItem?.price) || 0;\n\n    return price; // Output angka murni tanpa format mata uang\n  })() \n}}\n",
   "dynamicBindingPathList": [
     {
       "key": "accentColor"

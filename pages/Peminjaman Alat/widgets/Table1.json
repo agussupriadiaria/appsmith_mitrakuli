@@ -240,7 +240,7 @@
       "isVisible": true,
       "label": "Action",
       "notation": "standard",
-      "onSave": "{{alatKeluar_updateData.run().then(() => {\n  showAlert('berhasil', 'success');\n  navigateTo('https://app.appsmith.com/app/mitrakuli-master/peminjaman-alat-67a75f4e188dfb681e0222e6', {}, 'SAME_WINDOW');\n}).catch(() => {\n  showAlert('Gagal', 'warning');\n});}}",
+      "onSave": "{{alatKeluar_updateData.run().then(() => {\n  showAlert('berhasil', 'success');\n  navigateTo('Peminjaman Alat', {}, 'SAME_WINDOW');\n}).catch(() => {\n  showAlert('Gagal', 'warning');\n});}}",
       "originalId": "EditActions1",
       "saveActionLabel": "Save",
       "saveBorderRadius": "{{Table1.processedTableData.map((currentRow, currentIndex) => ( (appsmith.theme.borderRadius.appBorderRadius)))}}",
