@@ -1,25 +1,31 @@
+-- Query untuk elemen Select1 di Form1 Appsmith
 SELECT
+    -- Menggabungkan beberapa informasi produk menjadi satu string untuk tampilan
     CONCAT(wp_posts.ID, ' | ', wp_postmeta.meta_value, ' | ', wp_posts.post_title, ' | ', MAX(wp_terms.name), ' | ', COALESCE(inv.stock, 0)) AS sku_product,
-    wp_posts.ID AS post_id,
-    wp_postmeta.meta_value AS meta_value,
-    wp_postmeta_price.meta_value AS price,
-    COALESCE(inv.stock, 0) AS stock -- Tambahkan stok dari InventoryAlatTable1
+    wp_posts.ID AS post_id, -- ID dari post produk
+    wp_postmeta.meta_value AS meta_value, -- SKU produk
+    wp_postmeta_price.meta_value AS price, -- Harga produk
+    COALESCE(inv.stock, 0) AS stock -- Jumlah stok produk setelah perhitungan dari InventoryAlatTable1
 FROM wp_posts  
+-- Join dengan wp_postmeta untuk mendapatkan SKU produk
 LEFT JOIN wp_postmeta ON wp_posts.ID = wp_postmeta.post_id AND wp_postmeta.meta_key = '_sku'  
+-- Join dengan wp_postmeta untuk mendapatkan harga produk
 LEFT JOIN wp_postmeta AS wp_postmeta_price ON wp_posts.ID = wp_postmeta_price.post_id AND wp_postmeta_price.meta_key = '_price'
+-- Menghubungkan dengan kategori "product_brand"
 INNER JOIN wp_term_relationships ON wp_posts.ID = wp_term_relationships.object_id  
 INNER JOIN wp_term_taxonomy ON wp_term_relationships.term_taxonomy_id = wp_term_taxonomy.term_taxonomy_id 
     AND wp_term_taxonomy.taxonomy = 'product_brand'  
 INNER JOIN wp_terms ON wp_term_taxonomy.term_id = wp_terms.term_id  
+-- Join dengan subquery InventoryAlatTable1 untuk mendapatkan stok berdasarkan SKU
 LEFT JOIN (
-    -- Subquery dari InventoryAlatTable1 untuk mendapatkan stok berdasarkan SKU
     SELECT 
         CONVERT(inv.sku USING utf8mb4) COLLATE utf8mb4_general_ci AS sku, 
-        GREATEST(inv.stock - COALESCE(sewa.total_sku, 0), 0) AS stock
+        GREATEST(inv.stock - COALESCE(sewa.total_sku, 0), 0) AS stock -- Menghitung stok yang tersedia setelah dikurangi yang disewa dengan rent_status 'Incomplete'
     FROM (
+        -- Subquery untuk mengambil stok dari wp_postmeta
         SELECT 
             CONVERT(wp_postmeta_sku.meta_value USING utf8mb4) COLLATE utf8mb4_general_ci AS sku, 
-            CAST(wp_postmeta_stock.meta_value AS SIGNED) AS stock
+            CAST(wp_postmeta_stock.meta_value AS SIGNED) AS stock -- Mengubah stok menjadi tipe numerik
         FROM wp_posts
         LEFT JOIN wp_postmeta AS wp_postmeta_stock 
             ON wp_posts.ID = wp_postmeta_stock.post_id AND wp_postmeta_stock.meta_key = '_stock'
@@ -27,14 +33,18 @@ LEFT JOIN (
             ON wp_posts.ID = wp_postmeta_sku.post_id AND wp_postmeta_sku.meta_key = '_sku'
         WHERE wp_posts.post_type IN ('product', 'product_variation')
     ) AS inv
+    -- Menghitung total unit SKU yang sedang disewa dengan rent_status 'Incomplete'
     LEFT JOIN (
         SELECT 
             CONVERT(rent_sku USING utf8mb4) COLLATE utf8mb4_general_ci AS sku, 
-            COUNT(*) AS total_sku 
+            COUNT(*) AS total_sku -- Jumlah unit SKU yang sedang disewa
         FROM wp_postrent_log 
+        WHERE rent_status = 'Incomplete' -- Hanya menghitung stok yang masih dalam status 'Incomplete'
         GROUP BY rent_sku
     ) AS sewa ON inv.sku = sewa.sku
 ) AS inv ON CONVERT(wp_postmeta.meta_value USING utf8mb4) COLLATE utf8mb4_general_ci = inv.sku
+-- Filter hanya untuk produk dan variasi produk yang memiliki SKU
 WHERE wp_posts.post_type IN ('product', 'product_variation')
       AND wp_postmeta.meta_value != ''
+-- Mengelompokkan hasil berdasarkan informasi produk utama
 GROUP BY wp_posts.ID, wp_postmeta.meta_value, wp_posts.post_title, wp_postmeta_price.meta_value, inv.stock;

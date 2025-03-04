@@ -1,5 +1,5 @@
 SELECT 
-    ROW_NUMBER() OVER (ORDER BY wp_posts.id) AS no,
+    ROW_NUMBER() OVER (ORDER BY wp_postrent_log.rent_id) AS no,
     wp_posts.id AS id_alat,
     wp_postrent_log.rent_id AS id_sewa,
 		wp_postrent_log.rent_sku AS sku,

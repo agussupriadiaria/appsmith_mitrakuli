@@ -4,15 +4,9 @@ SELECT
     inv.item, -- Nama produk
     inv.price, -- Harga produk
     GREATEST(
-        CASE 
-            WHEN sewa.complete_count > 0 THEN 1 -- Jika ada penyewaan dengan status Complete, stok dikembalikan menjadi 1
-            ELSE inv.stock - COALESCE(sewa.total_sku, 0) -- Jika tidak, hitung stok seperti biasa
-        END, 
+        inv.stock - COALESCE(sewa.total_sku, 0), -- Hanya mengurangi stok berdasarkan jumlah penyewaan yang masih Incomplete
         0
     ) AS stock, -- Menghitung stok yang tersisa setelah dikurangi jumlah yang disewa
-    -- COALESCE(sewa.total_sku, 0) memastikan jika total_sku bernilai NULL, maka dianggap 0
-    -- inv.stock - COALESCE(sewa.total_sku, 0) menghitung stok yang tersisa setelah dikurangi jumlah yang disewa
-    -- GREATEST(..., 0) memastikan stok tidak menjadi negatif, jika hasil pengurangan di bawah 0, maka diubah menjadi 0
     inv.sku, -- SKU produk
     inv.merk -- Merek produk
 FROM (
@@ -25,36 +19,36 @@ FROM (
         MAX(wp_terms.name) AS merk -- Mengambil nama merek produk
     FROM 
         wp_posts
-    LEFT JOIN 
-        wp_postmeta AS wp_postmeta_price 
-        ON wp_posts.ID = wp_postmeta_price.post_id AND wp_postmeta_price.meta_key = '_price' -- Menghubungkan harga produk
-    LEFT JOIN 
-        wp_postmeta AS wp_postmeta_stock 
-        ON wp_posts.ID = wp_postmeta_stock.post_id AND wp_postmeta_stock.meta_key = '_stock' -- Menghubungkan stok produk
-    LEFT JOIN 
-        wp_postmeta AS wp_postmeta_sku 
-        ON wp_posts.ID = wp_postmeta_sku.post_id AND wp_postmeta_sku.meta_key = '_sku' -- Menghubungkan SKU produk
-    INNER JOIN  
-        wp_term_relationships ON wp_posts.ID = wp_term_relationships.object_id -- Menghubungkan ke tabel hubungan kategori
-    INNER JOIN  
-        wp_term_taxonomy ON wp_term_relationships.term_taxonomy_id = wp_term_taxonomy.term_taxonomy_id 
+    LEFT JOIN wp_postmeta AS wp_postmeta_price 
+        ON wp_posts.ID = wp_postmeta_price.post_id 
+        AND wp_postmeta_price.meta_key = '_price' -- Menghubungkan harga produk
+    LEFT JOIN wp_postmeta AS wp_postmeta_stock 
+        ON wp_posts.ID = wp_postmeta_stock.post_id 
+        AND wp_postmeta_stock.meta_key = '_stock' -- Menghubungkan stok produk
+    LEFT JOIN wp_postmeta AS wp_postmeta_sku 
+        ON wp_posts.ID = wp_postmeta_sku.post_id 
+        AND wp_postmeta_sku.meta_key = '_sku' -- Menghubungkan SKU produk
+    INNER JOIN wp_term_relationships 
+        ON wp_posts.ID = wp_term_relationships.object_id -- Menghubungkan ke tabel hubungan kategori
+    INNER JOIN wp_term_taxonomy 
+        ON wp_term_relationships.term_taxonomy_id = wp_term_taxonomy.term_taxonomy_id 
         AND wp_term_taxonomy.taxonomy = 'product_brand' -- Memfilter hanya taxonomy dengan kategori 'product_brand'
-    INNER JOIN  
-        wp_terms ON wp_term_taxonomy.term_id = wp_terms.term_id -- Menghubungkan ke tabel merek
+    INNER JOIN wp_terms 
+        ON wp_term_taxonomy.term_id = wp_terms.term_id -- Menghubungkan ke tabel merek
     WHERE 
         wp_posts.post_type IN ('product', 'product_variation') -- Memfilter hanya produk dan variasinya
         AND wp_postmeta_sku.meta_value != '' -- Mengabaikan produk tanpa SKU
     GROUP BY 
-        wp_posts.ID, wp_posts.post_title, wp_postmeta_price.meta_value,
+        wp_posts.ID, wp_posts.post_title, wp_postmeta_price.meta_value, 
         wp_postmeta_stock.meta_value, wp_postmeta_sku.meta_value -- Pengelompokan untuk memastikan data unik
 ) AS inv
 LEFT JOIN (
     SELECT 
         CONVERT(rent_sku USING utf8mb4) AS sku, -- Konversi SKU yang disewa ke utf8mb4
-        COUNT(*) AS total_sku, -- Menghitung total SKU yang disewa
-        SUM(CASE WHEN rent_status = 'Complete' THEN 1 ELSE 0 END) AS complete_count -- Menghitung jumlah penyewaan dengan status Complete
+        COUNT(CASE WHEN rent_status = 'Incomplete' THEN 1 ELSE NULL END) AS total_sku -- Menghitung jumlah penyewaan yang masih Incomplete
     FROM 
         wp_postrent_log 
+    WHERE rent_status = 'Incomplete' -- Hanya menghitung penyewaan yang masih Incomplete
     GROUP BY rent_sku -- Mengelompokkan berdasarkan SKU yang disewa
 ) AS sewa ON inv.sku = sewa.sku -- Menghubungkan data stok dengan jumlah penyewaan berdasarkan SKU
 ORDER BY inv.id ASC; -- Mengurutkan hasil berdasarkan ID produk
