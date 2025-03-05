@@ -181,7 +181,7 @@
       "isVisible": true,
       "label": "Action",
       "notation": "standard",
-      "onSave": "{{InventoryAlatUpdateData.run().then(() => {\n  showAlert('Success!', 'success');\n  navigateTo('https://app.appsmith.com/app/mitrakuli-master/inventory-alat-67a5c66225738773c4527ca8', {}, 'SAME_WINDOW');\n}).catch(() => {\n  showAlert('Error!', 'error');\n});}}",
+      "onSave": "{{InventoryAlatUpdateData.run().then(() => {\n  showAlert('Success!', 'success');\n  navigateTo('https://app.appsmith.com/app/mitrakuli-master/inventory-alat-67a5c66225738773c4527ca8?branch=master', {}, 'SAME_WINDOW');\n}).catch(() => {\n  showAlert('Error!', 'error');\n});}}",
       "originalId": "EditActions1",
       "saveActionLabel": "Save",
       "saveBorderRadius": "{{Table1.processedTableData.map((currentRow, currentIndex) => ( (appsmith.theme.borderRadius.appBorderRadius)))}}",
