@@ -15,6 +15,7 @@ SELECT
     wp_postrent_log.rent_status AS status_peminjaman,
 		wp_postrent_log.rent_delivery_status AS status_pengiriman,
 		wp_postrent_log.rent_notes AS notes_transaksi,
+		wp_postrent_log.rent_back AS alat_kembali,
 		wp_postrent_log.rent_created_at AS dibuat
 FROM wp_posts
 JOIN wp_postrent_log ON wp_posts.id = wp_postrent_log.post_id

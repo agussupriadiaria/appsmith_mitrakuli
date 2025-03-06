@@ -48,9 +48,10 @@
     "biaya_total",
     "status_pengiriman",
     "notes_transaksi",
+    "alat_kembali",
     "EditActions1"
   ],
-  "columnUpdatedAt": 1741060367773,
+  "columnUpdatedAt": 1741230539816,
   "columnWidthMap": {
     "biaya_perhari": 152,
     "biaya_total": 133.99999999999997,
@@ -163,6 +164,9 @@
     },
     {
       "key": "primaryColumns.status_pengiriman.computedValue"
+    },
+    {
+      "key": "primaryColumns.alat_kembali.computedValue"
     }
   ],
   "dynamicPropertyPathList": [
@@ -249,6 +253,41 @@
       "sticky": "right",
       "thousandSeparator": true,
       "validation": {},
+      "width": 150
+    },
+    "alat_kembali": {
+      "alias": "alat_kembali",
+      "allowCellWrapping": false,
+      "allowSameOptionsInNewRow": true,
+      "cellBackground": "",
+      "columnType": "date",
+      "computedValue": "{{Table1.processedTableData.map((currentRow, currentIndex) => ( currentRow[\"alat_kembali\"]))}}",
+      "currencyCode": "USD",
+      "decimals": 0,
+      "enableFilter": true,
+      "enableSort": true,
+      "fontStyle": "",
+      "horizontalAlignment": "LEFT",
+      "id": "alat_kembali",
+      "index": 16,
+      "isCellEditable": true,
+      "isCellVisible": true,
+      "isDerived": false,
+      "isDisabled": false,
+      "isDiscardVisible": true,
+      "isEditable": true,
+      "isSaveVisible": true,
+      "isVisible": true,
+      "label": "alat_kembali",
+      "notation": "standard",
+      "originalId": "alat_kembali",
+      "outputFormat": "DD/MM/YYYY",
+      "sticky": "",
+      "textColor": "",
+      "textSize": "0.875rem",
+      "thousandSeparator": true,
+      "validation": {},
+      "verticalAlignment": "CENTER",
       "width": 150
     },
     "biaya_perhari": {

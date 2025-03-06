@@ -5,7 +5,7 @@
   "pluginType": "DB",
   "unpublishedAction": {
     "actionConfiguration": {
-      "body": "UPDATE wp_postrent_log \nSET rent_phone = '{{Table1.updatedRow.no_hp}}',\n    rent_start = '{{Table1.updatedRow.tanggal_sewa}}',\n    rent_end = '{{Table1.updatedRow.tanggal_kembali}}',\n    rent_status = '{{Table1.updatedRow.status_peminjaman}}',\n\t\trent_delivery_status = '{{Table1.updatedRow.status_pengiriman}}',\n    rent_notes = '{{Table1.updatedRow.notes_transaksi}}'\nWHERE post_id = {{Table1.updatedRow.id_alat}} \nAND rent_id = {{Table1.updatedRow.id_sewa}};",
+      "body": "UPDATE wp_postrent_log \nSET rent_phone = '{{Table1.updatedRow.no_hp}}',\n    rent_start = '{{Table1.updatedRow.tanggal_sewa}}',\n    rent_end = '{{Table1.updatedRow.tanggal_kembali}}',\n    rent_status = '{{Table1.updatedRow.status_peminjaman}}',\n\t\trent_delivery_status = '{{Table1.updatedRow.status_pengiriman}}',\n    rent_notes = '{{Table1.updatedRow.notes_transaksi}}',\n\t\trent_back = '{{Table1.updatedRow.alat_kembali}}'\nWHERE post_id = {{Table1.updatedRow.id_alat}} \nAND rent_id = {{Table1.updatedRow.id_sewa}};",
       "encodeParamsToggle": true,
       "paginationType": "NONE",
       "pluginSpecifiedTemplates": [
