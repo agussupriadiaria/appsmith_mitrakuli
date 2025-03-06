@@ -5,7 +5,7 @@
   "borderRadius": "{{appsmith.theme.borderRadius.appBorderRadius}}",
   "bottomRow": 68,
   "boxShadow": "none",
-  "defaultText": "{{ \n  (() => {\n    const startDate = DatePicker1.selectedDate ? new Date(DatePicker1.selectedDate) : null;\n    const endDate = DatePicker2.selectedDate ? new Date(DatePicker2.selectedDate) : null;\n\n    if (!startDate || !endDate) {\n      return 0; // Jika salah satu tanggal kosong, tampilkan 0\n    }\n\n    // Hitung jumlah hari dengan pembulatan ke atas (ceil)\n    const diffTime = endDate - startDate;\n    const totalDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24)+1);\n\n    return totalDays > 0 ? totalDays : 0; // Pastikan tidak negatif\n  })() \n}}\n",
+  "defaultText": "{{ \n  (() => {\n    // Ambil tanggal yang dipilih dari DatePicker1, jika tidak ada, setel ke null\n    const startDate = DatePicker1.selectedDate ? new Date(DatePicker1.selectedDate) : null;\n    \n    // Ambil tanggal yang dipilih dari DatePicker2, jika tidak ada, setel ke null\n    const endDate = DatePicker2.selectedDate ? new Date(DatePicker2.selectedDate) : null;\n\n    // Jika salah satu tanggal tidak dipilih, kembalikan nilai default 0\n    if (!startDate || !endDate) {\n      return 0;\n    }\n\n    // Hitung selisih waktu dalam milidetik antara endDate dan startDate\n    const diffTime = endDate - startDate;\n    \n    // Konversi selisih waktu ke jumlah hari, tambahkan 1 agar hari yang sama dihitung sebagai 1\n    const totalDays = Math.floor(diffTime / (1000 * 60 * 60 * 24)) + 1;\n\n    // Pastikan nilai yang dikembalikan tidak negatif\n    return totalDays > 0 ? totalDays : 0;\n  })() \n}}\n",
   "dynamicBindingPathList": [
     {
       "key": "accentColor"
