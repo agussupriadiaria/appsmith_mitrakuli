@@ -7,7 +7,7 @@ VALUES (
     '{{Input1.text}}',
     '{{Input2.text}}',
     {{Input8.text}},
-		{{Input9.text}},
+		'{{Input11.text}}',
     '{{DatePicker1.selectedDate}}',
     '{{DatePicker2.selectedDate}}',
     {{Input12.text}},

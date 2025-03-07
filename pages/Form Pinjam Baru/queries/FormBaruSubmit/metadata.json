@@ -5,7 +5,7 @@
   "pluginType": "DB",
   "unpublishedAction": {
     "actionConfiguration": {
-      "body": "INSERT INTO wp_postrent_log (post_id, rent_sku, rent_tool, rent_merk, rent_name, rent_phone, rent_price_perday, rent_price_total, rent_start, rent_end, rent_day_amount, rent_status, rent_notes) \nVALUES (\n    {{Input7.text}},\n\t  '{{Input4.text}}',\n\t\t'{{Input5.text}}',\n\t\t'{{Input6.text}}',\n    '{{Input1.text}}',\n    '{{Input2.text}}',\n    {{Input8.text}},\n\t\t{{Input9.text}},\n    '{{DatePicker1.selectedDate}}',\n    '{{DatePicker2.selectedDate}}',\n    {{Input12.text}},\n    'Incomplete',\n    '{{Input3.text}}'\n);\n",
+      "body": "INSERT INTO wp_postrent_log (post_id, rent_sku, rent_tool, rent_merk, rent_name, rent_phone, rent_price_perday, rent_price_total, rent_start, rent_end, rent_day_amount, rent_status, rent_notes) \nVALUES (\n    {{Input7.text}},\n\t  '{{Input4.text}}',\n\t\t'{{Input5.text}}',\n\t\t'{{Input6.text}}',\n    '{{Input1.text}}',\n    '{{Input2.text}}',\n    {{Input8.text}},\n\t\t'{{Input11.text}}',\n    '{{DatePicker1.selectedDate}}',\n    '{{DatePicker2.selectedDate}}',\n    {{Input12.text}},\n    'Incomplete',\n    '{{Input3.text}}'\n);\n",
       "encodeParamsToggle": true,
       "paginationType": "NONE",
       "pluginSpecifiedTemplates": [
