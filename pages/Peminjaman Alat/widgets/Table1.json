@@ -865,7 +865,7 @@
       "menuItemsSource": "STATIC",
       "notation": "standard",
       "originalId": "status_pengiriman",
-      "selectOptions": "[\n  { \"label\": \"Ready\", \"value\": \"Ready\" },\n  { \"label\": \"Dikirim\", \"value\": \"Dikirim\" },\n  { \"label\": \"Batal\", \"value\": \"Batal\" }\n]\n",
+      "selectOptions": "[\n  { \"label\": \"Disiapkan\", \"value\": \"Disiapkan\" },\n  { \"label\": \"Dikirim\", \"value\": \"Dikirim\" },\n  { \"label\": \"Diterima\", \"value\": \"Diterima\" }\n]",
       "sourceData": [],
       "sticky": "",
       "textColor": "",
