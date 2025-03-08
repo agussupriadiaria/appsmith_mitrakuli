@@ -5,7 +5,7 @@
   "borderRadius": "{{appsmith.theme.borderRadius.appBorderRadius}}",
   "bottomRow": 68,
   "boxShadow": "none",
-  "defaultText": "{{ \n  (() => {\n    // Ambil tanggal yang dipilih dari DatePicker1, jika tidak ada, setel ke null\n    const startDate = DatePicker1.selectedDate ? new Date(DatePicker1.selectedDate) : null;\n    \n    // Ambil tanggal yang dipilih dari DatePicker2, jika tidak ada, setel ke null\n    const endDate = DatePicker2.selectedDate ? new Date(DatePicker2.selectedDate) : null;\n\n    // Jika salah satu tanggal tidak dipilih, kembalikan nilai default 0\n    if (!startDate || !endDate) {\n      return 0;\n    }\n\n    // Hitung selisih waktu dalam milidetik antara endDate dan startDate\n    const diffTime = endDate - startDate;\n    \n    // Konversi selisih waktu ke jumlah hari, tambahkan 1 agar hari yang sama dihitung sebagai 1\n    const totalDays = Math.floor(diffTime / (1000 * 60 * 60 * 24)) + 1;\n\n    // Pastikan nilai yang dikembalikan tidak negatif\n    return totalDays > 0 ? totalDays : 0;\n  })() \n}}\n",
+  "defaultText": "{{ \n  (() => {\n    // Ambil tanggal yang dipilih dari DatePicker1 dan DatePicker2\n    const startDate = DatePicker1.selectedDate ? new Date(DatePicker1.selectedDate) : null;\n    const endDate = DatePicker2.selectedDate ? new Date(DatePicker2.selectedDate) : null;\n\n    // Jika salah satu tanggal tidak dipilih, kembalikan nilai default 0\n    if (!startDate || !endDate) {\n      return 0;\n    }\n\n    // Jika tanggal yang dipilih sama, kembalikan 1\n    if (startDate.toDateString() === endDate.toDateString()) {\n      return 1;\n    }\n\n    // Konversi ke UTC agar tidak dipengaruhi zona waktu atau jam\n    const startUTC = Date.UTC(startDate.getFullYear(), startDate.getMonth(), startDate.getDate());\n    const endUTC = Date.UTC(endDate.getFullYear(), endDate.getMonth(), endDate.getDate());\n\n    // Hitung selisih hari berbasis UTC dan tambahkan 1 agar inklusif\n    const totalDays = Math.round((endUTC - startUTC) / (1000 * 60 * 60 * 24)) + 1;\n\n    // Pastikan nilai yang dikembalikan tidak negatif\n    return totalDays > 0 ? totalDays : 0;\n  })() \n}}\n",
   "dynamicBindingPathList": [
     {
       "key": "accentColor"
@@ -32,7 +32,7 @@
   "labelStyle": "",
   "labelTextSize": "0.875rem",
   "labelWidth": 5,
-  "leftColumn": 3,
+  "leftColumn": 1,
   "maxDynamicHeight": 9000,
   "minDynamicHeight": 4,
   "minWidth": 450,
@@ -49,7 +49,7 @@
   "renderMode": "CANVAS",
   "resetOnSubmit": true,
   "responsiveBehavior": "fill",
-  "rightColumn": 23,
+  "rightColumn": 21,
   "showStepArrows": false,
   "topRow": 61,
   "type": "INPUT_WIDGET_V2",

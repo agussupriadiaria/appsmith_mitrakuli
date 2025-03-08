@@ -5,7 +5,7 @@
   "borderRadius": "{{appsmith.theme.borderRadius.appBorderRadius}}",
   "bottomRow": 68,
   "boxShadow": "none",
-  "defaultText": "{{ \n  (() => {\n    const selectedSku = Select1.selectedOptionValue; \n    const selectedItem = FormBaruSelect1.data.find(row => row.meta_value === selectedSku);\n    const pricePerDay = Number(selectedItem?.price) || 0;\n\n    // Jika Checkbox1 dicentang, ambil nilai dari CurrencyInput1\n    if (Checkbox1.isChecked) {\n      const cleanCurrency = Number((CurrencyInput1.text || CurrencyInput1.defaultValue || \"0\").replace(/[^\\d]/g, \"\"));\n      return new Intl.NumberFormat('id-ID', { \n        style: 'currency', \n        currency: 'IDR', \n        minimumFractionDigits: 0 \n      }).format(cleanCurrency);\n    }\n\n    // Ambil tanggal dari DatePicker\n    const startDate = DatePicker1.selectedDate ? new Date(DatePicker1.selectedDate) : null;\n    const endDate = DatePicker2.selectedDate ? new Date(DatePicker2.selectedDate) : null;\n\n    // Jika tanggal mulai atau tanggal akhir tidak dipilih, gunakan harga untuk 1 hari sebagai default\n    if (!startDate || !endDate) {\n      return new Intl.NumberFormat('id-ID', { \n        style: 'currency', \n        currency: 'IDR', \n        minimumFractionDigits: 0 \n      }).format(pricePerDay);\n    }\n\n    // Hitung jumlah hari\n    const diffTime = endDate - startDate;\n    const totalDays = Math.floor(diffTime / (1000 * 60 * 60 * 24)) + 1;\n    const finalDays = Math.max(totalDays, 1);\n    const totalPrice = pricePerDay * finalDays;\n\n    return new Intl.NumberFormat('id-ID', { \n      style: 'currency', \n      currency: 'IDR', \n      minimumFractionDigits: 0 \n    }).format(totalPrice);\n  })() \n}}\n",
+  "defaultText": "{{ \n  (() => {\n    // Ambil SKU yang dipilih dari Select1\n    const selectedSku = Select1.selectedOptionValue; \n    \n    // Cari item yang sesuai di FormBaruSelect1 berdasarkan SKU yang dipilih\n    const selectedItem = FormBaruSelect1.data.find(row => row.meta_value === selectedSku);\n    \n    // Ambil harga per hari dari item yang dipilih, jika tidak ada, gunakan 0\n    const pricePerDay = selectedItem && !isNaN(Number(selectedItem.price)) ? Number(selectedItem.price) : 0;\n\n    // Jika Checkbox1 dicentang, gunakan nilai dari CurrencyInput1 sebagai harga\n    if (Checkbox1.isChecked) {\n      return new Intl.NumberFormat('id-ID', { \n        style: 'currency', \n        currency: 'IDR', \n        minimumFractionDigits: 0 \n      }).format(Number((CurrencyInput1.text || CurrencyInput1.defaultValue || \"0\").replace(/[^\\d]/g, \"\")));\n    }\n\n    // Ambil tanggal mulai dan akhir dari DatePicker1 dan DatePicker2\n    const startDate = DatePicker1.selectedDate ? new Date(DatePicker1.selectedDate) : null;\n    const endDate = DatePicker2.selectedDate ? new Date(DatePicker2.selectedDate) : null;\n\n    // Jika salah satu tanggal tidak dipilih, gunakan harga untuk 1 hari sebagai default\n    if (!startDate || !endDate) {\n      return new Intl.NumberFormat('id-ID', { \n        style: 'currency', \n        currency: 'IDR', \n        minimumFractionDigits: 0 \n      }).format(pricePerDay);\n    }\n\n    // Hitung jumlah hari\n    let totalDays = 1; // Default minimal 1 hari\n    if (startDate.toDateString() !== endDate.toDateString()) {\n      // Konversi ke UTC agar tidak dipengaruhi zona waktu atau jam\n      const startUTC = Date.UTC(startDate.getFullYear(), startDate.getMonth(), startDate.getDate());\n      const endUTC = Date.UTC(endDate.getFullYear(), endDate.getMonth(), endDate.getDate());\n\n      // Hitung selisih hari berbasis UTC dan tambahkan 1 agar inklusif\n      totalDays = Math.round((endUTC - startUTC) / (1000 * 60 * 60 * 24)) + 1;\n    }\n\n    // Pastikan nilai yang dikembalikan tidak negatif\n    totalDays = totalDays > 0 ? totalDays : 0;\n\n    // Hitung total harga\n    const totalPrice = totalDays * pricePerDay;\n\n    // Format harga ke dalam format mata uang IDR (Rupiah)\n    return new Intl.NumberFormat('id-ID', { \n      style: 'currency', \n      currency: 'IDR', \n      minimumFractionDigits: 0 \n    }).format(totalPrice);\n    \n  })() \n}}\n",
   "dynamicBindingPathList": [
     {
       "key": "accentColor"
@@ -32,7 +32,7 @@
   "labelStyle": "",
   "labelTextSize": "0.875rem",
   "labelWidth": 5,
-  "leftColumn": 42,
+  "leftColumn": 43,
   "maxDynamicHeight": 9000,
   "minDynamicHeight": 4,
   "minWidth": 450,
@@ -49,7 +49,7 @@
   "renderMode": "CANVAS",
   "resetOnSubmit": true,
   "responsiveBehavior": "fill",
-  "rightColumn": 61,
+  "rightColumn": 62,
   "showStepArrows": false,
   "topRow": 61,
   "type": "INPUT_WIDGET_V2",
