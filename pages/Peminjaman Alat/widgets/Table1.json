@@ -81,6 +81,7 @@
   "customIsLoading": false,
   "customIsLoadingValue": "",
   "defaultPageSize": 0,
+  "defaultSearchText": "",
   "defaultSelectedRowIndex": 0,
   "defaultSelectedRowIndices": [
     0
