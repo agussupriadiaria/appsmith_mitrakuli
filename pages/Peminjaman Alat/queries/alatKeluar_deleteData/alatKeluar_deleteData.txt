@@ -1,0 +1,1 @@
+DELETE FROM wp_postrent_log WHERE rent_id = {{Table1.selectedRow.id_sewa}}
