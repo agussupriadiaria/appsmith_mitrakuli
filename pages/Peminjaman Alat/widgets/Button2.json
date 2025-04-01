@@ -28,7 +28,7 @@
   "mobileRightColumn": 36,
   "mobileTopRow": 12,
   "needsErrorInfo": false,
-  "onClick": "{{alatKeluar_deleteData.run().then(() => {\n  showAlert('Berhasil Hapus Data!', 'success');\n});\nnavigateTo('Peminjaman Alat', {}, 'SAME_WINDOW');}}",
+  "onClick": "{{alatKeluar_deleteData.run().then(() => {\n  showAlert('Berhasil Hapus Data!', 'success');\n});\nnavigateTo('https://app.appsmith.com/app/mitrakuli-master/peminjaman-alat-67a75f4e188dfb681e0222e6', {}, 'SAME_WINDOW');}}",
   "originalBottomRow": 16,
   "originalTopRow": 12,
   "parentColumnSpace": 17.9375,
