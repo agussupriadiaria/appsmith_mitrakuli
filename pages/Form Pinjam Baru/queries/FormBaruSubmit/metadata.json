@@ -5,7 +5,7 @@
   "pluginType": "DB",
   "unpublishedAction": {
     "actionConfiguration": {
-      "body": "INSERT INTO wp_postrent_log (\n  post_id, rent_sku, rent_tool, rent_merk, rent_name, rent_phone,\n  rent_price_perday, rent_price_total, rent_start, rent_end,\n  rent_day_amount, rent_status, rent_notes\n) VALUES (\n  {{Input7.text}},\n  '{{Input4.text}}',\n  '{{Input5.text}}',\n  '{{Input6.text}}',\n  '{{Input1.text}}',\n  '{{Input2.text}}',\n  {{Input8.text}},\n  {{Input9.text}},\n  '{{ moment(DatePicker1.selectedDate).tz(\"Asia/Jakarta\").format(\"YYYY-MM-DD HH:mm:ss\") }}',\n  '{{ moment(DatePicker2.selectedDate).tz(\"Asia/Jakarta\").format(\"YYYY-MM-DD HH:mm:ss\") }}',\n  {{Input12.text}},\n  'Incomplete',\n  '{{Input3.text}}'\n);\n",
+      "body": "INSERT INTO wp_postrent_log (\n\tpost_id, rent_sku, rent_tool, rent_merk, rent_name, rent_phone,\n\trent_price_perday, rent_price_total, rent_start, rent_end,\n\trent_day_amount, rent_status, rent_notes, rent_created_at\n) VALUES (\n\t{{Input7.text}},\n\t'{{Input4.text}}',\n\t'{{Input5.text}}',\n\t'{{Input6.text}}',\n\t'{{Input1.text}}',\n\t'{{Input2.text}}',\n\t{{Input8.text}},\n\t{{Input9.text}},\n\t'{{ moment(DatePicker1.selectedDate).tz(\"Asia/Jakarta\").format(\"YYYY-MM-DD HH:mm:ss\") }}',\n\t'{{ moment(DatePicker2.selectedDate).tz(\"Asia/Jakarta\").format(\"YYYY-MM-DD HH:mm:ss\") }}',\n\t{{Input12.text}},\n\t'Incomplete',\n\t'{{Input3.text}}',\n\t'{{Text2.text}}'\n);\n",
       "encodeParamsToggle": true,
       "paginationType": "NONE",
       "pluginSpecifiedTemplates": [
