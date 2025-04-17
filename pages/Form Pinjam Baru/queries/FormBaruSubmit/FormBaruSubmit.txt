@@ -1,16 +1,19 @@
-INSERT INTO wp_postrent_log (post_id, rent_sku, rent_tool, rent_merk, rent_name, rent_phone, rent_price_perday, rent_price_total, rent_start, rent_end, rent_day_amount, rent_status, rent_notes) 
-VALUES (
-    {{Input7.text}},
-	  '{{Input4.text}}',
-		'{{Input5.text}}',
-		'{{Input6.text}}',
-    '{{Input1.text}}',
-    '{{Input2.text}}',
-    {{Input8.text}},
-		{{Input9.text}},
-    '{{DatePicker1.selectedDate}}',
-    '{{DatePicker2.selectedDate}}',
-    {{Input12.text}},
-    'Incomplete',
-    '{{Input3.text}}'
+INSERT INTO wp_postrent_log (
+  post_id, rent_sku, rent_tool, rent_merk, rent_name, rent_phone,
+  rent_price_perday, rent_price_total, rent_start, rent_end,
+  rent_day_amount, rent_status, rent_notes
+) VALUES (
+  {{Input7.text}},
+  '{{Input4.text}}',
+  '{{Input5.text}}',
+  '{{Input6.text}}',
+  '{{Input1.text}}',
+  '{{Input2.text}}',
+  {{Input8.text}},
+  {{Input9.text}},
+  '{{ moment(DatePicker1.selectedDate).tz("Asia/Jakarta").format("YYYY-MM-DD HH:mm:ss") }}',
+  '{{ moment(DatePicker2.selectedDate).tz("Asia/Jakarta").format("YYYY-MM-DD HH:mm:ss") }}',
+  {{Input12.text}},
+  'Incomplete',
+  '{{Input3.text}}'
 );
