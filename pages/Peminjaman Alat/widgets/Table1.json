@@ -364,7 +364,7 @@
       "allowCellWrapping": false,
       "allowSameOptionsInNewRow": true,
       "cellBackground": "",
-      "columnType": "date",
+      "columnType": "text",
       "computedValue": "{{Table1.processedTableData.map((currentRow, currentIndex) => ( currentRow[\"dibuat\"]))}}",
       "currencyCode": "USD",
       "decimals": 0,
